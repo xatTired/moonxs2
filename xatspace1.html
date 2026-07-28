@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My xatspace</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    #background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      opacity: 1;
+    }
+
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: black;
+      opacity: 0;
+      pointer-events: none;
+      transition: 
+        opacity 8s ease-in-out,
+        background-color 1.5s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <img id="background" src="https://xatimg.com/image/QEbpfSMvGS5d.gif" alt="Moon">
+  <div id="overlay"></div>
+
+  <script>
+    const background = document.getElementById("background");
+    const overlay = document.getElementById("overlay");
+
+    // colours it cycles through
+    const colors = [
+      "black",
+      "#632b58",   // kinda like a blood moon red maybe
+      "#2a0049",   // this is like a dark purple?
+      "#00008B",   // dark blue
+      "#2F4F4F"    // dark teal
+    ];
+    let colorIndex = 0;
+
+    // this is the hover
+    background.addEventListener("mouseenter", () => {
+      overlay.style.opacity = "0.50";
+    });
+
+    background.addEventListener("mouseleave", () => {
+      overlay.style.opacity = "0";
+    });
+
+    // this is the colour cycler thingy
+    document.addEventListener("click", () => {
+      colorIndex = (colorIndex + 1) % colors.length;
+      overlay.style.backgroundColor = colors[colorIndex];
+    });
+  </script>
+</body>
+</html>
